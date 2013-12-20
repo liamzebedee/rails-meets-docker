@@ -1,5 +1,13 @@
 # -*- sh -*-
-FROM fcat/ubuntu-universe:12.04
+FROM ubuntu
+
+# Don't ask for confirm
+ENV DEBIAN_FRONTEND noninteractive
+
+# So we have add-apt-repository available
+RUN apt-get -qy install software-properties-common 
+# So we can install libv8-dev and other things
+RUN add-apt-repository "deb http://archive.ubuntu.com/ubuntu precise main universe restricted multiverse"
 
 # development tools
 RUN apt-get -qy install git vim tmux
